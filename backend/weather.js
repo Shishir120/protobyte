@@ -16,21 +16,6 @@ async function getLocation() {
   }
 
 
-// const currWeather = async () => {
-//     let {lat, lon} = await getLocation();
-//     let response = await fetch(`https://api.agromonitoring.com/agro/1.0/weather?lat=${lat}&lon=${lon}&appid=${ApiKey}`)
-//     let data = await response.json();
-
-//     let cloudPercentage = data.clouds.all;
-//     let cloudDesc = data.weather[0].description;
-
-//     let {temp, humidity} = data.main;
-
-//     // console.log(data);
-//     // console.log(cloudPercentage);
-//     // console.log(cloudDesc);
-// }\
-
 const currWeather = async () => {
   let { lat, lon } = await getLocation();
   let response = await fetch(`https://api.agromonitoring.com/agro/1.0/weather?lat=${lat}&lon=${lon}&appid=${ApiKey}`);
@@ -52,16 +37,8 @@ const currWeather = async () => {
       Wind_Speed: `${windSpeed} m/s`,
       Weather: `${weatherDescription}`
   }
-
   console.log(data);
 
-  // console.log(`
-  //     Date: ${date.toLocaleString()}
-  //     Temperature: ${temp.toFixed(2)}°C
-  //     Humidity: ${humidity}%
-  //     Wind Speed: ${windSpeed} m/s
-  //     Weather: ${weatherDescription}
-  // `);
 };
 
 
@@ -78,15 +55,17 @@ const displayForecast = async () => {
       const windSpeed = forecast.wind.speed;
       const weatherDescription = forecast.weather[0].description;
 
-      console.log(`
-          Date: ${date.toLocaleString()}
-          Temperature: ${temp.toFixed(2)}°C
-          Humidity: ${humidity}%
-          Wind Speed: ${windSpeed} m/s
-          Weather: ${weatherDescription}s
-      `);
+      data = {
+        Date: `${date.toLocaleString()}`,
+        Temperature: `${temp.toFixed(2)}°C`,
+        Humidity: `${humidity}%`,
+        Wind_Speed: `${windSpeed} m/s`,
+        Weather: `${weatherDescription}`
+    }
+
+      console.log(data);
   });
 };
 
-// displayForecast();
-currWeather();
+displayForecast();
+// currWeather();
