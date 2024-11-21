@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require("cors");
-const cookieSession = require("cookie-session");
 require('./database/config')
 const User = require('./database/user')
+const weatherRelatedTips = require("./gemini");
 
 const app = express();
 
@@ -43,9 +43,9 @@ app.post('/login', async (req, res) => {
 
 
 app.get('/weather', async (req, res) => {
-  res.send("Weather connected successfully");
+  let geminiResponse = await weatherRelatedTips();
+  res.send(geminiResponse);
 })
-
 
 
 // set port, listen for requests
