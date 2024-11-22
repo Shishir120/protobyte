@@ -4,6 +4,7 @@ require('./database/config')
 const User = require('./database/user')
 const weatherRelatedTips = require("./gemini");
 const Order = require('./database/order');
+const FarmerGoods = require('./database/farmerGoods')
 
 const app = express();
 
@@ -50,6 +51,12 @@ app.get('/weather/:index', async (req, res) => {
 
 app.post("/shop", async(req, res) => {
   let data =  new Order(req.body);
+  let response = await data.save();
+  res.send(response);
+})
+
+app.post("/add-products", async (req, res) => {
+  let data = new FarmerGoods(req.body);
   let response = await data.save();
   res.send(response);
 })
