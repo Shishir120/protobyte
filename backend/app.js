@@ -42,9 +42,9 @@ app.post('/login', async (req, res) => {
 })
 
 
-app.get('/weather', async (req, res) => {
-  let geminiResponse = await weatherRelatedTips();
-  res.send(geminiResponse);
+app.get('/weather/:index', async (req, res) => {
+    let geminiResponse = await weatherRelatedTips(req.params.index);
+    res.send(geminiResponse);
 })
 
 
