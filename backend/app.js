@@ -3,6 +3,7 @@ const cors = require("cors");
 require('./database/config')
 const User = require('./database/user')
 const weatherRelatedTips = require("./gemini");
+const Order = require('./database/order');
 
 const app = express();
 
@@ -47,6 +48,11 @@ app.get('/weather/:index', async (req, res) => {
     res.send(geminiResponse);
 })
 
+app.post("/shop", async(req, res) => {
+  let data =  new Order(req.body);
+  let response = await data.save();
+  res.send(response);
+})
 
 // set port, listen for requests
 const PORT = 5000;
