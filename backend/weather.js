@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-let ApiKey = "8144b3ca2542bd55b7bf2b9a75e15665";
+const ApiKey = process.env.OPENWEATHER_API_KEY;
 
 async function getLocation() {
   try {

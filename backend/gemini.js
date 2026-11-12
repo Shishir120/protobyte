@@ -1,6 +1,7 @@
 let weatherData = require("./weather.js");
 
-ApiKey = "AIzaSyDf9zxxAbF2xQTbfvFQ4fpvg17phuMvk5Y";
+require("dotenv").config();
+const ApiKey = process.env.GEMINI_API_KEY;
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
